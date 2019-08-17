@@ -34,7 +34,7 @@
                 src="{{ url_for( theme.avatar | default(theme.images + '/avatar.gif') ) }}"
                 alt="{{ theme.author }}" />
             {% endif %}
-              <p class="site-author-name" itemprop="name">{{ theme.author }}</p>
+              <!-- <p class="site-author-name" itemprop="name">{{ theme.author }}</p>-->
               <p class="site-description motion-element" itemprop="description">{#
             #}{% if theme.seo %}{#
               #}{{ theme.signature }}{#
@@ -43,7 +43,8 @@
             #}{% endif %}{#
             #}</p>
           </div>
-
+   <!--网易云音乐-->
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1231917&auto=1&height=66"></iframe>
           <nav class="site-state motion-element">
 
             {% if config.archive_dir != '/' and site.posts.length > 0 %}
@@ -68,6 +69,19 @@
                   <span class="site-state-item-name">{{ __('state.categories') }}</span>
                 {% if hasCategoriesPage %}</a>{% endif %}
               </div>
+            {% endif %}
+ 
+            {% if site.tags.length > 1 %}
+              <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcloud.js') }}"></script>
+              <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcanvas.js') }}"></script>
+                <div class="widget-wrap">
+                  <h3 class="widget-title">Tag Cloud</h3>
+                  <div id="myCanvasContainer" class="widget tagcloud">
+                  <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                      {{ list_tags() }}
+                  </canvas>
+                  </div>
+                </div>
             {% endif %}
 
             {% if site.tags.length > 0 %}
@@ -173,3 +187,4 @@
     </div>
   </aside>
 {% endmacro %}
+
